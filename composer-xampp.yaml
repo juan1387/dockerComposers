@@ -1,0 +1,24 @@
+services:
+  XamppPhp:
+    image: tomsik68/xampp
+    restart: always
+    ports:
+      - "1341:80"
+      - "1340:22"
+ 
+   
+    volumes:
+      - ./my_web_pages:/opt/lampp/htdocs
+      - ./my_apache_conf:/etc/apache2/httpd.conf
+volumes:
+  XamppPhp:
+
+##Creadential SSH 
+# username: root
+# password: root
+# Example: 
+# ssh root@localhost -p 1340
+# Console interactive into docker container 
+# docker exec -ti php-services_XamppPhp_1  bash
+# restart service
+# docker exec php-services_XamppPhp_1 /opt/lampp/lampp restart

@@ -1,0 +1,45 @@
+version: '3.3'
+
+services:
+
+  wordpressOpalo:
+    image: wordpress
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      WORDPRESS_DB_HOST: dbMysql
+      WORDPRESS_DB_USER: opaloDataWorpress
+      WORDPRESS_DB_PASSWORD: 'opalo2021*' 
+      WORDPRESS_DB_NAME: opaloweb
+      WORDPRESS_DEBUG: 1
+   
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+      - ./plugins:/var/www/html/wp-content/plugins
+
+
+  dbMysql:
+    image: mysql:latest
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    restart: always
+    
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: 'opaloweb'
+      MYSQL_USER: 'opaloDataWorpress'
+      MYSQL_PASSWORD:  'opalo2021*'
+      MYSQL_ROOT_PASSWORD: '23camilo'
+      
+     
+    volumes:
+         - ./dbOpalo:/var/lib/mysql
+
+
+volumes:
+  wordpress:
+  db:
+  
